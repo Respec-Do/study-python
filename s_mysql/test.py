@@ -1,19 +1,25 @@
-from s_mysql.product_module import *
+import random as r
 
-if __name__ == '__main__':
-    # 상품 추가
-    insert_query = "insert into tbl_product(name, price, created_date) \
-                    values(%s, %s, %s)"
+range = 10
+range_dict = {1:100, 10 : 10}
+ratting  = [0]*range_dict[range]
+percent = 30
 
-    insert_params = ['마우스', '85000', '2024-01-17T17:21:00']
-    # save(insert_query, insert_params)
+for i in range(percent // 10):
+    ratting[i] = 1
 
-    # 전체 상품 조회
-    find_all_query = "select id, name, price, created_date from tbl_product"
-    products = find_all(find_all_query)
+if ratting[r.randint(0, len(ratting))] == 1:
+    print('강화성공')
 
-    for product in products:
-        print(f'상품명: {product["name"]}')
 
-    # 상품 정보 중 가격이 3000원 이상인 상품은 10% 할인해준다.
-    # 평균 가격보다 높은 상품은 모두 삭제한다.
+def check(*, key: str, value: str) -> dict:
+    # 저장소(DB)에서 각 은행 정보를 가져온 뒤
+    for bank in Bank.banks:
+        # 각 은행에서 회원의 정보를 가져온다.
+        for user in bank:
+            # 전달받은 키워드(key)로 회원의 정보가 value와 같은 지 검사한다.
+            if user[key] == value:
+                # 만약 해당 회원을 찾았다면, 회원의 전체 정보를 리턴한다.
+                return user
+    # 해당 회원을 찾지 못했다면, None을 리턴한다.
+    return None
