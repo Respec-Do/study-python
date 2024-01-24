@@ -42,3 +42,4 @@ show tables;
 select * from tbl_client;
 select * from tbl_office;
 select * from tbl_conference_room;
+select * from tbl_reservation;
